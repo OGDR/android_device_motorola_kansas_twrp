@@ -24,6 +24,11 @@ PRODUCT_MANUFACTURER := motorola
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="kansas_g_vext-user 13 W1VKS36H.9-12-11 12209 release-keys"
+    PRIVATE_BUILD_DESC="kansas_g_sys-user 16 W1VKS36H.9-12-11 12209-eac0ac release-keys MW-209"
 
-BUILD_FINGERPRINT := motorola/kansas_g_vext/kansas:13/W1VKS36H.9-12-11/12209:user/release-keys
+BUILD_FINGERPRINT := motorola/kansas_g_sys/kansas:16/W1VKS36H.9-12-11/12209-eac0ac:user/release-keys
+
+#PRODUCT_BUILD_PROP_OVERRIDES += \
+#    PRIVATE_BUILD_DESC="kansas_g_vext-user 13 W1VKS36H.9-12-11 12209 release-keys"
+
+#BUILD_FINGERPRINT := motorola/kansas_g_vext/kansas:13/W1VKS36H.9-12-11/12209:user/release-keys
