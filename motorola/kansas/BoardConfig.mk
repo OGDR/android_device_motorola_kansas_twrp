@@ -10,6 +10,8 @@ DEVICE_PATH := device/motorola/kansas
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
