@@ -54,7 +54,7 @@ TWRP Device Tree
     Status: IN PROGRESS
 
 TWRP Build Environment
-    Status: NOT STARTED
+    Status: STARTED
 
 First Source-Built TWRP
     Status: NOT STARTED
