@@ -1,6 +1,10 @@
-import /init.recovery.project.rc
+#import /init.recovery.project.rc
+
+#on early-init
+#    write /dev/kmsg "===== TWRP RECOVERY EARLY-INIT STARTED ====="
 
 on init
+    write /dev/kmsg "===== TWRP RECOVERY INIT STARTED ====="
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "11201000.usb0"
 

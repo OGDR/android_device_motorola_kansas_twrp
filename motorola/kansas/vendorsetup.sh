@@ -5,6 +5,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-add_lunch_combo omni_kansas-user
-add_lunch_combo omni_kansas-userdebug
-add_lunch_combo omni_kansas-eng
+#add_lunch_combo omni_kansas-user
+#add_lunch_combo omni_kansas-userdebug
+#add_lunch_combo omni_kansas-eng

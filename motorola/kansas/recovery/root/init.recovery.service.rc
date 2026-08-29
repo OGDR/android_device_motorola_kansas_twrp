@@ -1,0 +1,8 @@
+on boot
+    start recovery
+
+# For starting recovery on 5.0 and newer
+service recovery /system/bin/recovery
+    class main
+    socket recovery stream 422 system system
+    seclabel u:r:recovery:s0

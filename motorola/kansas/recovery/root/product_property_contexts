@@ -1,0 +1,22 @@
+#line 1 "motorola/security/sepolicy/product/private/property_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+# Amazon partner id
+ro.csc.amazon.partnerid u:object_r:amazon_partner_id_prop:s0
+
+# Allow RCS to set ro.mot.enable_android.hardware.telephony.ims.singlereg dynamically
+ro.mot.enable_android.hardware.telephony.ims.singlereg u:object_r:telephony_config_prop:s0 exact string
+
+# TMO CarrierConfig id
+persist.radio.cc_version u:object_r:radio_cc_version_prop:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+
+#line 1 "motorola/security/sepolicy/features/face/tetras/product/private/property_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+# Tetras glass mode state
+product.faceauth.image.glasses.disabled u:object_r:product_tetras_prop:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+

@@ -1,0 +1,191 @@
+#line 1 "device/mediatek/sepolicy/base/vendor/service_contexts"
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+android.hardware.neuralnetworks.IDevice/mtk-dsp_shim    u:object_r:hal_neuralnetworks_service:s0
+android.hardware.neuralnetworks.IDevice/mtk-gpu_shim    u:object_r:hal_neuralnetworks_service:s0
+android.hardware.neuralnetworks.IDevice/mtk-mdla_shim   u:object_r:hal_neuralnetworks_service:s0
+android.hardware.neuralnetworks.IDevice/mtk-neuron_shim u:object_r:hal_neuralnetworks_service:s0
+
+#Data: 2022/3/1
+#add em aidl
+vendor.mediatek.hardware.engineermode.IEmds/default   u:object_r:mtk_hal_em_service:s0
+
+#Data: 2022/4/12
+#add widevine aidl
+android.hardware.drm.IDrmFactory/widevine    u:object_r:hal_drm_service:s0
+
+#Data: 2022/4/14
+#mmlpq aidl
+vendor.mediatek.hardware.mmlpq.IMmlpq/default u:object_r:mtk_hal_mmlpq_service:s0
+
+#Data: 2022/4/14
+#PQ AIDL
+vendor.mediatek.hardware.pq_aidl.IPictureQuality_AIDL/default u:object_r:mtk_hal_pq_service:s0
+
+#Data: 2022/6/7
+#MTKPOWER APPLIST AIDL
+vendor.mediatek.hardware.mtkpower_applist.IMtkpower_applist/default u:object_r:mtk_hal_applist_service:s0
+
+#Date: 2022/4/20
+#secure element
+android.hardware.radio.modem.IRadioModem/se1 u:object_r:hal_radio_service:s0
+android.hardware.radio.modem.IRadioModem/se2 u:object_r:hal_radio_service:s0
+android.hardware.radio.modem.IRadioModem/se3 u:object_r:hal_radio_service:s0
+android.hardware.radio.modem.IRadioModem/se4 u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/se1 u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/se2 u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/se3 u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/se4 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot1 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot2 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot3 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.sim.IMtkRadioExSim/slot4 u:object_r:hal_radio_service:s0
+
+#Date: 2022/4/29
+#add apusys aidl
+vendor.mediatek.hardware.apuware.apusys.INeuronApusys/default u:object_r:hal_neuralnetworks_service:s0
+
+# Date: 2022/05/04
+# AovService AIDL
+vendor.mediatek.hardware.camera.aovservice.IAovService/default u:object_r:mtk_hal_aov_service:s0
+
+#Data: 2022/05/23
+#add MTK batcing AIDL
+vendor.mediatek.hardware.gnss.batching.IMtkGnssBatching/default u:object_r:mtk_hal_batching_service:s0
+
+# Data: 2022/05/26
+# add telephony aidl
+vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot1           u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot2           u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot3           u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.data.IMtkRadioExData/slot4           u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot1             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot2             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot3             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.ims.IMtkRadioExIms/slot4             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot1 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot2 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot3 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.messaging.IMtkRadioExMessaging/slot4 u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot1         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot2         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot3         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.modem.IMtkRadioExModem/slot4         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot1     u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot2     u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot3     u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.network.IMtkRadioExNetwork/slot4     u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot1         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot2         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot3         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.voice.IMtkRadioExVoice/slot4         u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot1             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot2             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot3             u:object_r:hal_radio_service:s0
+vendor.mediatek.hardware.mtkradioex.rcs.IMtkRadioExRcs/slot4             u:object_r:hal_radio_service:s0
+
+# Data: 2022/05/26
+# add telephony ims aidl
+android.hardware.radio.modem.IRadioModem/imsSlot1     u:object_r:hal_radio_service:s0
+android.hardware.radio.modem.IRadioModem/imsSlot2     u:object_r:hal_radio_service:s0
+android.hardware.radio.modem.IRadioModem/imsSlot3     u:object_r:hal_radio_service:s0
+android.hardware.radio.modem.IRadioModem/imsSlot4     u:object_r:hal_radio_service:s0
+android.hardware.radio.network.IRadioNetwork/imsSlot1 u:object_r:hal_radio_service:s0
+android.hardware.radio.network.IRadioNetwork/imsSlot2 u:object_r:hal_radio_service:s0
+android.hardware.radio.network.IRadioNetwork/imsSlot3 u:object_r:hal_radio_service:s0
+android.hardware.radio.network.IRadioNetwork/imsSlot4 u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/imsSlot1         u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/imsSlot2         u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/imsSlot3         u:object_r:hal_radio_service:s0
+android.hardware.radio.sim.IRadioSim/imsSlot4         u:object_r:hal_radio_service:s0
+android.hardware.radio.voice.IRadioVoice/imsSlot1     u:object_r:hal_radio_service:s0
+android.hardware.radio.voice.IRadioVoice/imsSlot2     u:object_r:hal_radio_service:s0
+android.hardware.radio.voice.IRadioVoice/imsSlot3     u:object_r:hal_radio_service:s0
+android.hardware.radio.voice.IRadioVoice/imsSlot4     u:object_r:hal_radio_service:s0
+#Data: 2022/4/20
+#add bluetooth audio aidl
+vendor.mediatek.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default u:object_r:mtk_hal_audio_service:s0
+
+#Data: 2022/07/26
+#add MTK gpu AIDL
+arm.mali.platform.ICompression/default u:object_r:mtk_hal_mali_platform_default_service:s0
+
+#MBrain
+vendor.mediatek.hardware.mbrain.IMBrain/default               u:object_r:mtk_hal_mbrain_service:s0
+vendor.mediatek.hardware.mbrainj.IMBrainJava/default          u:object_r:mtk_mbrainj_service:s0
+#line 1 "motorola/security/sepolicy_vendor/vendor/common/moto/service_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+motorola.hardware.wireless.powershare.IMotPowerShare/default          u:object_r:hal_motpowershare_aidl_service:s0
+motorola.hardware.health.IMotoHealth/default          u:object_r:hal_mothealth_aidl_service:s0
+motorola.hardware.health.storage.IMotStroage/default      u:object_r:hal_health_storage_service:s0
+
+motorola.hardware.power.IPowerExt/default          u:object_r:hal_powerext_service:s0
+com.motorola.hardware.display.touch.IMotTouch/default     u:object_r:hal_mottouch_aidl_service:s0
+vendor.nxp.nxpnfc_aidl.INxpNfc/default             u:object_r:hal_nfc_service:s0
+
+motorola.hardware.sensors.ISensorsCalibrate/default          u:object_r:hal_sensorscalibrate_service:s0
+
+motorola.hardware.camera.imgtuner.aidl.IImageTuning/default          u:object_r:hal_imagetuner_aidl_service:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+#line 1 "motorola/security/sepolicy_vendor/vendor/common/mtk/service_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+#MTKPOWER AIDL
+vendor.mediatek.hardware.mtkpower.IMtkPowerService/default u:object_r:mtk_hal_power_service:s0
+
+#Date: 2023/01/03
+#add MTK Audio AIDL
+vendor.mediatek.hardware.audio.IMtkAudio/default u:object_r:mtk_hal_audio_service:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+#line 1 "motorola/security/sepolicy_vendor/features/sarwifi/vendor/service_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+motorola.hardware.sarwifi.IMtkWifi/default                    u:object_r:hal_motsarwifi_service:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+
+#line 1 "motorola/security/sepolicy_vendor/features/rsu/vendor/alps/service_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+vendor.trustonic.alps.alps_device::IAlps    u:object_r:alpsdevice_service:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+
+#line 1 "motorola/security/sepolicy_vendor/features/fingerprint/vendor/common/service_contexts"
+# NOTE: Contexts added in this file MUST start with a blank line as below.
+
+com.motorola.hardware.biometric.fingerprint.IMotoFingerPrint/default        u:object_r:hal_fingerprint_test_service:s0
+com.motorola.hardware.biometric.fingerprint.IMotoFodSensorTest/default      u:object_r:hal_fingerprint_test_service:s0
+com.motorola.hardware.biometric.fingerprint.IMotoCaptiveSensorTest/default        u:object_r:hal_fingerprint_test_service:s0
+
+#
+#line 1 "motorola/security/sepolicy_vendor/features/dolby/audiox3-aidl/service_contexts"
+
+# bind an AIDL service name to the selinux type
+vendor.dolby.dms.IDms/default    u:object_r:hal_aidl_dms_service:s0
+#line 1 "motorola/security/sepolicy_vendor/features/fmelna/vendor/service_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+motorola.hardware.fm.IMotFMRadio/default          u:object_r:hal_mot_fmelna_service:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+#line 1 "motorola/security/sepolicy_vendor/features/motopanel/vendor/common/service_contexts"
+# NOTE: Contexts added in this file MUST start with a blank line as below.
+
+com.motorola.hardware.display.panel.IDisplayPanel/default          u:object_r:hal_moto_panel_aidl_service:s0
+#
+#line 1 "motorola/security/sepolicy_vendor/features/motofm/vendor/service_contexts"
+## NOTE: Contexts added in this file MUST start with a blank line as below.
+
+motorola.hardware.mtk.fm.IFM/default          u:object_r:hal_mot_fm_service:s0
+
+##NOTE: DO NOT change the last line, keep it as blank!.
+#line 1 "system/sepolicy/reqd_mask/service_contexts"
+# empty service_contexts file - this file is used to generate an empty
+# non-platform service_context for devices without any service_contexts
+# customizations.

@@ -1,0 +1,16 @@
+ro.product.vendor_dlkm.brand=motorola
+ro.product.vendor_dlkm.device=kansas
+ro.product.vendor_dlkm.manufacturer=motorola
+ro.product.vendor_dlkm.model=kansas
+ro.product.vendor_dlkm.name=kansas_g_vext
+
+ro.vendor_dlkm.build.date=Mon Jun  1 19:24:44 CDT 2026
+#ro.vendor_dlkm.build.date.utc=1780359884
+ro.vendor_dlkm.build.fingerprint=motorola/kansas_g_vext/kansas:13/W1VKS36H.9-12-11/12209:user/release-keys
+ro.vendor_dlkm.build.id=W1VKS36H.9-12-11
+ro.vendor_dlkm.build.tags=release-keys
+ro.vendor_dlkm.build.type=user
+ro.vendor_dlkm.build.version.incremental=12209
+ro.vendor_dlkm.build.version.release=13
+ro.vendor_dlkm.build.version.release_or_codename=13
+ro.vendor_dlkm.build.version.sdk=33

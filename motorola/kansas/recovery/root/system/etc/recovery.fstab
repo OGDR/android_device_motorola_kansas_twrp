@@ -1,77 +1,33 @@
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835"
-# 1 "<built-in>" 1
-# 1 "<built-in>" 3
-# 356 "<built-in>" 3
-# 1 "<command line>" 1
-# 1 "<built-in>" 2
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835" 2
-# 148 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835"
+# Kansas XT2513-1
+# Original stock MT6835 fstab (untouched) + TWRP recovery additions only
+
+# === STOCK (original, do not modify) ===
 system /system erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
 system /system ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
 system_ext /system_ext erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
 system_ext /system_ext ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
-
 vendor /vendor erofs ro wait,slotselect,avb,logical,first_stage_mount
 vendor /vendor ext4 ro wait,slotselect,avb,logical,first_stage_mount
-
-
 product /product erofs ro wait,slotselect,avb,logical,first_stage_mount
 product /product ext4 ro wait,slotselect,avb,logical,first_stage_mount
-
-
-
-
-
-
 vendor_dlkm /vendor_dlkm erofs ro wait,slotselect,avb,logical,first_stage_mount
 vendor_dlkm /vendor_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
-
-
-
-
-
-
 system_dlkm /system_dlkm erofs ro wait,slotselect,avb,logical,first_stage_mount
 system_dlkm /system_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
-
-
 /dev/block/by-name/metadata /metadata f2fs noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount
-
 /dev/block/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,sysfs_path=/sys/devices/platform/soc/112b0000.ufshci,fsverity
-
-
-
 /dev/block/by-name/protect1 /mnt/vendor/protect_f ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/by-name/protect2 /mnt/vendor/protect_s ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/by-name/nvdata /mnt/vendor/nvdata ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/by-name/nvcfg /mnt/vendor/nvcfg ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
-
-
 /dev/block/by-name/persist /mnt/vendor/persist ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/by-name/prodpersist /mnt/product/persist ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
-
-
-
 /dev/block/by-name/logks /mnt/product/logks ext4 noatime,nosuid,nodev wait,formattable,nofail,first_stage_mount
-
-
-
 /dev/block/by-name/tzapp_a /mnt/vendor/tzapp ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
-
-
-
-
-
-
 /devices/platform/soc/11240000.mmc* auto auto defaults voldmanaged=sdcard1:auto
-
-
-
 /devices/platform/usb_xhci* auto vfat defaults voldmanaged=usbotg:auto
 /devices/platform/soc/11201000.usb0/11200000.xhci* auto vfat defaults voldmanaged=usbotg:auto
-
 /dev/block/by-name/frp /persistent emmc defaults defaults
-
 /dev/block/by-name/nvram /nvram emmc defaults defaults
 /dev/block/by-name/proinfo /proinfo emmc defaults defaults
 /dev/block/by-name/lk1 /lk1 emmc defaults defaults
@@ -79,47 +35,25 @@ system_dlkm /system_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 /dev/block/by-name/para /para emmc defaults defaults
 /dev/block/by-name/misc /misc emmc defaults defaults
 /dev/block/by-name/init_boot /init_boot emmc defaults defaults
-
-
-
-
 /dev/block/by-name/boot /boot emmc defaults first_stage_mount,nofail,slotselect
-# 234 "vendor/mediatek/proprietary/hardware/fstab/mt6835/fstab.in.mt6835"
 /dev/block/by-name/vbmeta_system /vbmeta_system emmc defaults first_stage_mount,nofail,slotselect,avb=vbmeta
-
 /dev/block/by-name/logo /logo emmc defaults defaults
 /dev/block/by-name/expdb /expdb emmc defaults defaults
 /dev/block/by-name/seccfg /seccfg emmc defaults defaults
-
 /dev/block/by-name/tee1 /tee1 emmc defaults defaults
 /dev/block/by-name/tee2 /tee2 emmc defaults defaults
-
-
 /dev/block/by-name/scp1 /scp1 emmc defaults defaults
 /dev/block/by-name/scp2 /scp2 emmc defaults defaults
-
-
 /dev/block/by-name/sspm1 /sspm1 emmc defaults defaults
 /dev/block/by-name/sspm2 /sspm2 emmc defaults defaults
-
-
 /dev/block/by-name/dpm1 /dpm1 emmc defaults defaults
 /dev/block/by-name/dpm2 /dpm2 emmc defaults defaults
-
 /dev/block/by-name/mcupm1 /mcupm1 emmc defaults defaults
 /dev/block/by-name/mcupm2 /mcupm2 emmc defaults defaults
-
-
-
 /dev/block/by-name/md1img /md1img emmc defaults defaults
 /dev/block/by-name/md1dsp /md1dsp emmc defaults defaults
 /dev/block/by-name/md1arm7 /md1arm7 emmc defaults defaults
 /dev/block/by-name/md3img /md3img emmc defaults defaults
-
-
-
-
-
 /dev/block/by-name/gz1 /gz1 emmc defaults defaults
 /dev/block/by-name/gz2 /gz2 emmc defaults defaults
 /dev/block/by-name/ccu /ccu emmc defaults defaults
@@ -131,23 +65,43 @@ system_dlkm /system_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 /dev/block/by-name/mvpu_algo2 /mvpu_algo2 emmc defaults defaults
 /dev/block/by-name/apusys1 /apusys1 emmc defaults defaults
 /dev/block/by-name/apusys2 /apusys2 emmc defaults defaults
-
 /dev/block/by-name/spmfw /spmfw emmc defaults defaults
-
-
-
-
-
-
-
 /dev/block/by-name/pi_img /pi_img emmc defaults defaults
 /dev/block/by-name/boot_para /boot_para emmc defaults defaults
 /dev/block/by-name/odmdtbo /odmdtbo emmc defaults defaults
 /dev/block/by-name/dtbo /dtbo emmc defaults defaults
 /dev/block/by-name/connsys_wifi /connsys_wifi emmc defaults defaults
 /dev/block/by-name/connsys_bt /connsys_bt emmc defaults defaults
-
 /dev/block/by-name/otp /otp emmc defaults defaults
-
-
 /dev/block/by-name/vbmeta /vbmeta emmc defaults defaults
+
+# === TWRP ADDITIONS (only the pieces that were missing from stock) ===
+
+# TWRP logical image backup / flash entries
+/system_image emmc system flags=display="System Image";backup=1;flashimg=1;logical;slotselect
+/system_ext_image emmc system_ext flags=display="System Ext Image";backup=1;flashimg=1;logical;slotselect
+/vendor_image emmc vendor flags=display="Vendor Image";backup=1;flashimg=1;logical;slotselect
+/product_image emmc product flags=display="Product Image";backup=1;flashimg=1;logical;slotselect
+/vendor_dlkm_image emmc vendor_dlkm flags=display="Vendor DLKM Image";backup=1;flashimg=1;logical;slotselect
+/system_dlkm_image emmc system_dlkm flags=display="System DLKM Image";backup=1;flashimg=1;logical;slotselect
+
+# TWRP boot-related partitions (backup + flashing)
+/boot emmc /dev/block/by-name/boot flags=display="Boot";backup=1;flashimg=1;slotselect
+/init_boot emmc /dev/block/by-name/init_boot flags=display="Init Boot";backup=1;flashimg=1;slotselect
+/vendor_boot emmc /dev/block/by-name/vendor_boot flags=display="Vendor Boot";backup=1;flashimg=1;slotselect
+/dtbo emmc /dev/block/by-name/dtbo flags=display="DTBO";backup=1;flashimg=1;slotselect
+/vbmeta emmc /dev/block/by-name/vbmeta flags=display="VBMeta";backup=1;flashimg=1
+/vbmeta_system emmc /dev/block/by-name/vbmeta_system flags=display="VBMeta System";backup=1;flashimg=1
+
+# TWRP display helpers for protected / small partitions
+/mnt/vendor/protect_f ext4 /dev/block/by-name/protect1 flags=display="Protect F"
+/mnt/vendor/protect_s ext4 /dev/block/by-name/protect2 flags=display="Protect S"
+/mnt/vendor/nvdata ext4 /dev/block/by-name/nvdata flags=display="NVData"
+/mnt/vendor/nvcfg ext4 /dev/block/by-name/nvcfg flags=display="NVCfg"
+/mnt/vendor/persist ext4 /dev/block/by-name/persist flags=display="Persist"
+/persistent emmc /dev/block/by-name/frp flags=display="FRP"
+/misc emmc /dev/block/by-name/misc flags=display="Misc"
+
+# TWRP storage devices for GUI
+auto auto /devices/platform/soc/11240000.mmc* flags=display="MicroSD";storage;wipeingui;removable
+auto vfat /devices/platform/usb_xhci* flags=display="USB OTG";storage;wipeingui;removable
