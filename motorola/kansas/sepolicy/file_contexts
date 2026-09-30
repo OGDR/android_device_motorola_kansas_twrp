@@ -1,0 +1,2 @@
+/mnt/vendor/persist(/.*)?    u:object_r:persist_data_file:s0
+#/system/bin/hw/android\.hardware\.boot@1\.2-service    u:object_r:recovery_exec:s0

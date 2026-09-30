@@ -3,16 +3,16 @@ LOCAL_PATH := device/motorola/kansas/recovery/root
 # ================================================================
 # Recovery root init files and rc files
 # ================================================================
-PRODUCT_COPY_FILES += \
- #   device/motorola/kansas/recovery/root/android.hardware.health-service.example_recovery.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/android.hardware.health-service.example_recovery.rc \
-    device/motorola/kansas/recovery/root/servicemanager.recovery.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/servicemanager.recovery.rc \
-    device/motorola/kansas/recovery/root/init.recovery.mt6835.rc:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/init.recovery.mt6835.rc \
-    device/motorola/kansas/recovery/root/mtk-plpath-utils.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/mtk-plpath-utils.rc \
-    device/motorola/kansas/recovery/root/snapuserd.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/snapuserd.rc
+#PRODUCT_COPY_FILES += \
+#    device/motorola/kansas/recovery/root/android.hardware.health-service.example_recovery.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/android.hardware.health-service.example_recovery.rc \
+#   device/motorola/kansas/recovery/root/servicemanager.recovery.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/servicemanager.recovery.rc \
+#    device/motorola/kansas/recovery/root/init.recovery.mt6835.rc:$(TARGET_COPY_OUT_RECOVERY)/init.recovery.mt6835.rc \
+#    device/motorola/kansas/recovery/root/mtk-plpath-utils.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/mtk-plpath-utils.rc
+#    device/motorola/kansas/recovery/root/snapuserd.rc:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/init/snapuserd.rc
 
 # Optional – only enable if you really need them
 # device/motorola/kansas/recovery/root/default.prop:$(TARGET_COPY_OUT_RECOVERY)/root/default.prop \
- device/motorola/kansas/recovery/root/prop.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/prop.default \
+# device/motorola/kansas/recovery/root/prop.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/prop.default \
 
 # device/motorola/kansas/recovery/root/plat_file_contexts:$(TARGET_COPY_OUT_RECOVERY)/root/plat_file_contexts \
 # device/motorola/kansas/recovery/root/plat_property_contexts:$(TARGET_COPY_OUT_RECOVERY)/root/plat_property_contexts \
@@ -21,17 +21,44 @@ PRODUCT_COPY_FILES += \
 
 
 #=====================
-# First stage ramdisk
+# default and prop default
 #====================
+
+#PRODUCT_COPY_FILES += \
+#     device/motorola/kansas/vendor_ramdisk/default.prop:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/default.prop \
+#     PRODUCT_COPY_FILES += \
+#     device/motorola/kansas/vendor_ramdisk/prop.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/prop.default
 
 #=====================
 # First stage ramdisk
 #=====================
 
 #PRODUCT_COPY_FILES += \
-#    device/motorola/kansas/recovery/root/first_stage_ramdisk/fstab.emmc:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.emmc \
-#    device/motorola/kansas/recovery/root/first_stage_ramdisk/fstab.mt6835:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.mt6835
-
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/fstab.emmc:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.emmc \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk\fstab.mt6835:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6835 \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/e2fsck:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/e2fsck \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/dump.f2fs:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/dump.f2fs \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/snapuserd:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/snapuserd \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/fsck.f2fs:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/fsck.f2fs \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/linker_asan64:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/linker_asan64 \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/resize.f2fs:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/resize.f2fs \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/defrag.f2fs:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/defrag.f2fs \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/bin/linker64:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/bin/linker64 \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/ld-android.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/ld-android.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libz.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libz.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libext2_quota.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libext2_quota.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libsparse.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libsparse.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libc.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libc.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libext2fs.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libext2fs.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libext2_e2p.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libext2_e2p.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libbase.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libbase.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libdl.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libdl.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libc++.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libc++.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libext2_uuid.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libext2_uuid.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libext2_blkid.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libext2_blkid.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libm.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libm.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/liblog.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/liblog.so \
+#    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/system/lib64/libext2_com_err.so:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/system/lib64/libext2_com_err.so
 
 #PRODUCT_COPY_FILES += \
 #    $(call find-copy-subdir-files,*,device/motorola/kansas/recovery/root/first_stage_ramdisk,$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk)
@@ -102,7 +129,9 @@ PRODUCT_COPY_FILES += \
 #=====================
 
 PRODUCT_COPY_FILES += \
-    device/motorola/kansas/vendor_ramdisk/vendor_ramdisk_dirplaceholder.txt:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor_ramdisk_dirplaceholder.txt
+    device/motorola/kansas/first_stage_ramdisk/fstab.emmc:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/fstab.emmc \
+    device/motorola/kansas/first_stage_ramdisk/fstab.mt6835:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/fstab.mt6835
+#    device/motorola/kansas/vendor_ramdisk/vendor_ramdisk_dirplaceholder.txt:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/vendor_ramdisk_dirplaceholder.txt
 #    device/motorola/kansas/vendor_ramdisk/first_stage_ramdisk/fstab.mt6835:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6835
 
 
@@ -113,3 +142,9 @@ PRODUCT_COPY_FILES += \
 #    device/motorola/kansas/recovery.fstab:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/recovery.fstab
 # PRODUCT_COPY_FILES += \
 #    device/motorola/kansas/twrp.flags:$$(TARGET_VENDOR_RAMDISK_OUT)/system/etc/twrp.flags
+
+################################
+# Pass dtb --> dtb.img for build
+################################
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/prebuilt/dtb:dtb.img

@@ -39,16 +39,16 @@ TWRP Boot
     Status: WORKING
 
 TWRP Touchscreen
-    Status: NOT WORKING
+    Status: WORKING
 
 TWRP ADB
-    Status: NOT WORKING
+    Status: WORKING
 
 TWRP Mouse Support
     Status: NOT TESTED
 
 TWRP Log Collection
-    Status: NOT TESTED
+    Status: WORKING
 
 TWRP Device Tree
     Status: IN PROGRESS
@@ -57,7 +57,7 @@ TWRP Build Environment
     Status: STARTED
 
 First Source-Built TWRP
-    Status: NOT STARTED
+    Status: WORKING AND IN PROGRESS
 
 Kansas ROM Environment
     Status: NOT STARTED
@@ -103,6 +103,7 @@ Related Modules:
 dsi-panel-mot-boe-ft8057s-667-hdp-dphy-vdo-120hz.ko
 dsi-panel-mot-boe-ft8057m-667-hdp-dphy-vdo-120hz.ko
 focaltech_0flash_mmi_v3.ko
+sensors_class.ko
 
 Observed DTBO Relationships:
 
@@ -113,6 +114,8 @@ NT36528 Panels
 FocalTech Touch
 ↓
 FT8057 Panels
+
+FocalTech is dependent on sensors_class.so
 
 =================================================
 DTBO FINDINGS

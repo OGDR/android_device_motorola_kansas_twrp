@@ -1,0 +1,9 @@
+soong_namespace {
+}
+
+cc_library_shared {
+    name: "libbase_shim",
+    srcs: ["libbase_shim.cpp"],
+    stl: "libc++",
+    recovery_available: true,
+}

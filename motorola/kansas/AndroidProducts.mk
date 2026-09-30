@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_kansas.mk
+    $(LOCAL_DIR)/twrp_kansas.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_kansas-user \
-    omni_kansas-userdebug \
-    omni_kansas-eng
+    twrp_kansas-user \
+    twrp_kansas-userdebug \
+    twrp_kansas-eng

@@ -1,0 +1,3 @@
+# Allow recovery to find the Keymaster HAL
+allow recovery hal_keymaster_hwservice:hwservice_manager find;
+hal_client_domain(recovery, hal_keymaster)

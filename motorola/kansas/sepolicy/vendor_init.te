@@ -1,0 +1,8 @@
+type persist_data_file, file_type;
+
+# vendor_init needs to update the persist filesystem root.
+allow vendor_init persist_data_file:dir setattr;
+
+# vendor_init writes the boot profiling node.
+allow vendor_init proc:dir search;
+allow vendor_init proc:file write;

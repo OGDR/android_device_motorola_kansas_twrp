@@ -1,0 +1,2 @@
+type vendor_trustonic_tee_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_trustonic_tee_tui_hwservice, hwservice_manager_type, protected_hwservice;

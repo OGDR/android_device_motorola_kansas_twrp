@@ -1,0 +1,80 @@
+# ============================================================
+# Boot related (A/B)
+# ============================================================
+/boot              emmc    /dev/block/by-name/boot              flags=display="Boot";backup=1;flashimg=1;slotselect
+/init_boot         emmc    /dev/block/by-name/init_boot         flags=display="Init Boot";backup=1;flashimg=1;slotselect
+/vendor_boot       emmc    /dev/block/by-name/vendor_boot       flags=display="Vendor Boot";backup=1;flashimg=1;slotselect
+
+# ============================================================
+# Important physical partitions
+# ============================================================
+/dtbo              emmc    /dev/block/by-name/dtbo              flags=display="DTBO";backup=1;flashimg=1;slotselect
+/vbmeta            emmc    /dev/block/by-name/vbmeta            flags=display="VBMeta";backup=1;flashimg=1;slotselect
+/vbmeta_system     emmc    /dev/block/by-name/vbmeta_system     flags=display="VBMeta System";backup=1;flashimg=1;slotselect
+/logo              emmc    /dev/block/by-name/logo              flags=display="Logo";backup=1;flashimg=1;slotselect
+
+# ============================================================
+# Metadata & Data
+# ============================================================
+/metadata          f2fs    /dev/block/by-name/metadata          flags=display="Metadata";backup=1
+/data              f2fs    /dev/block/by-name/userdata          flags=display="Data";backup=1
+
+# ============================================================
+# Super
+# ============================================================
+/super             emmc    /dev/block/by-name/super             flags=display="Super";backup=1;flashimg=1
+
+# ============================================================
+# Logical partitions (erofs + ext4 fallback)
+# ============================================================
+/system            erofs   system                               flags=display="System";logical
+/system            ext4    system                               flags=display="System";logical
+
+/system_ext        erofs   system_ext                          flags=display="System Ext";logical
+/system_ext        ext4    system_ext                          flags=display="System Ext";logical
+
+/vendor            erofs   vendor                               flags=display="Vendor";logical
+/vendor            ext4    vendor                               flags=display="Vendor";logical
+
+/product           erofs   product                              flags=display="Product";logical
+/product           ext4    product                              flags=display="Product";logical
+
+#/odm               erofs   odm                                  flags=display="ODM";logical
+#/odm               ext4    odm                                  flags=display="ODM";logical
+
+# ============================================================
+# DLKM partitions (kernel modules - important for touch/display)
+# ============================================================
+/system_dlkm       erofs   system_dlkm                          flags=display="System DLKM";logical
+/system_dlkm       ext4    system_dlkm                          flags=display="System DLKM";logical
+
+/vendor_dlkm       erofs   vendor_dlkm                          flags=display="Vendor DLKM";logical
+/vendor_dlkm       ext4    vendor_dlkm                          flags=display="Vendor DLKM";logical
+
+#/odm_dlkm          erofs   odm_dlkm                             flags=display="ODM DLKM";logical
+#/odm_dlkm          ext4    odm_dlkm                             flags=display="ODM DLKM";logical
+
+# ============================================================
+# Image partitions (for flashing .img files)
+# ============================================================
+/system_image      emmc    /dev/block/mapper/system             flags=display="System Image";backup=1;flashimg=1;slotselect
+/system_ext_image emmc /dev/block/mapper/system_ext flags=display="System Ext Image";backup=1;flashimg=1;slotselect
+/vendor_image      emmc    /dev/block/mapper/vendor             flags=display="Vendor Image";backup=1;flashimg=1;slotselect
+/product_image     emmc    /dev/block/mapper/product            flags=display="Product Image";backup=1;flashimg=1;slotselect
+#/odm_image         emmc    /dev/block/mapper/odm                flags=display="ODM Image";backup=1;flashimg=1;slotselect
+
+/system_dlkm_image emmc    /dev/block/mapper/system_dlkm        flags=display="System DLKM Image";backup=1;flashimg=1;slotselect
+/vendor_dlkm_image emmc    /dev/block/mapper/vendor_dlkm        flags=display="Vendor DLKM Image";backup=1;flashimg=1;slotselect
+#/odm_dlkm_image    emmc    /dev/block/mapper/odm_dlkm           flags=display="ODM DLKM Image";backup=1;flashimg=1;slotselect
+
+# ============================================================
+# Misc / Firmware / Protect
+# ============================================================
+/misc              emmc    /dev/block/by-name/misc              flags=display="misc";backup=0
+/persist           ext4    /dev/block/by-name/persist           flags=display="Persist";backup=1
+/nvcfg             ext4    /dev/block/by-name/nvcfg             flags=display="NvCfg";backup=1
+/nvdata            ext4    /dev/block/by-name/nvdata            flags=display="NvData";backup=1
+/nvram             emmc    /dev/block/by-name/nvram             flags=display="NvRAM";backup=1
+/proinfo           emmc    /dev/block/by-name/proinfo           flags=display="Proinfo";backup=1
+/protect1          ext4    /dev/block/by-name/protect1          flags=display="Protect1";backup=1
+/protect2          ext4    /dev/block/by-name/protect2          flags=display="Protect2";backup=1

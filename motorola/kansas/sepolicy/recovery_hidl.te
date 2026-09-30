@@ -1,0 +1,7 @@
+allow recovery hidl_base_hwservice:hwservice_manager add;
+#allow recovery vendor_trustonic_tee_hwservice:hwservice_manager add;
+allow recovery vendor_trustonic_tee_hwservice:hwservice_manager find;
+#allow recovery hidl_manager_hwservice:hwservice_manager add;
+#allow recovery hal_bootctl_hwservice:hwservice_manager add;
+#allow recovery vendor_trustonic_tee_tui_hwservice:hwservice_manager find;
+allow recovery vendor_trustonic_tee_tui_hwservice:hwservice_manager { add find };

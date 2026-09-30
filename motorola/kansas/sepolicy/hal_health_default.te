@@ -1,0 +1,3 @@
+# Read power-supply type information.
+allow hal_health_default sysfs:file read;
+hal_client_domain(recovery, hal_health)

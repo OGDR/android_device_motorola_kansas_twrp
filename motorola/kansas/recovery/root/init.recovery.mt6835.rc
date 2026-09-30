@@ -1,31 +1,71 @@
-#import /init.recovery.project.rc
-
-#on early-init
-#    write /dev/kmsg "===== TWRP RECOVERY EARLY-INIT STARTED ====="
-
 on init
-    write /dev/kmsg "===== TWRP RECOVERY INIT STARTED ====="
+    mkdir /mnt/vendor/persist 0700 root root
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist
+
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+
+#    export LD_PRELOAD /system/lib64/libbase_shim.so
+#    export LD_SHIM_LIBS /system/lib64/hw/android.hardware.boot@1.0-#impl-1.2-mtkimpl.so|/system/lib64/libbase_shim.so:/system/bin/hw/#android.hardware.health-service.example_recovery|/system/lib64/#libbase_shim.so
+
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "11201000.usb0"
+    setprop sys.usb.ffs.aio_compat 1
+    setprop crypto.ready 1
 
-on fs && property:ro.debuggable=0
-    # distinguish USB shoulde connect or not, i.e. CDP vs SDP
-    # set charging free due to it wait for USB activation
+    mkdir /tmp/misc 0755 root root
+    mkdir /tmp/misc/keystore 0700 root root
+
+#export LD_SHIM_LIBS /system/bin/hw/android.hardware.health-#service.example_recovery|/system/lib64/libbase_shim.so:/system/lib64/hw/#android.hardware.boot@1.0-impl-1.2-mtkimpl.so|/system/lib64/libbase_shim.so
+
+#on init
+#    setprop wrap.android.hardware.health-service.example_recovery #LD_SHIM_LIBS=/system/lib64/libbase_shim.so
+#    export LD_SHIM_LIBS /system/lib64/libbase_shim.so
+
+#on fs
+    # logcat states that this is a invalid keyword 'install_keyring'
+    #install_keyring
 
 on post-fs
-    # Support A/B feature for EMMC and UFS boot region
+    #start tee-1-1
+    #start vendor.keymint-trustonic
+    #start vendor.gatekeeper-1-0
+
+#on property:init.svc.vendor.keymint-trustonic=running
+#    start keystore2
+    
+    insmod /lib/modules/sensors_class.ko
+    insmod /lib/modules/focaltech_0flash_mmi_v3.ko
+    insmod /lib/modules/nova_0flash_mmi_v3.ko
+
+    start boot-hal-1-2
+
+    exec u:r:recovery:s0 root root -- /system/bin/mtk_plpath_utils
+    start mtk.plpath.utils.link
+
     symlink /dev/block/sda /dev/block/mmcblk0boot0
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
     symlink /dev/block/mmcblk0boot0 /dev/block/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/by-name/preloader_b
 
-    # Support A/B feature for combo emmc and ufs OTA update
     symlink /dev/block/by-name/preloader_a /dev/block/by-name/preloader_emmc_a
     symlink /dev/block/by-name/preloader_b /dev/block/by-name/preloader_emmc_b
     symlink /dev/block/by-name/preloader_a /dev/block/by-name/preloader_ufs_a
     symlink /dev/block/by-name/preloader_b /dev/block/by-name/preloader_ufs_b
 
-    exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
-
     symlink /dev/block/mapper/pl_a /dev/block/by-name/preloader_raw_a
     symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
+
+on boot
+
+service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+on boot
+    start health-hal-2-1
+    start boot-hal-1-2
+    setprop sys.usb.config adb
