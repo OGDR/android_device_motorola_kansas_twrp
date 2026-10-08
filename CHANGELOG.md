@@ -2,17 +2,31 @@
 
 ## Kansas TWRP Development
 
+### October 8, 2026 — 1:55 PM — MTK Boot Implementation Working
+
+* **TWRP now boots successfully** with the new MTK boot implementation **`android.hardware.boot@1.0-impl-1.2-mtkimpl.so`**.
+* Fixed a line in the **boot implementation source** that was preventing it from working correctly.
+* Fixed the reason the boot implementation was not compiling, which was caused by how the source path was set up in **`device.mk`**.
+* The new ported MTK boot implementation is now working well enough for TWRP to boot.
+
+#### To Do
+
+1. Fix anything reported in the **new recovery log**.
+2. Continue fixing anything that appears in **future logs** as the remaining boot issues are worked out.
+3. Clean up the recovery environment once the logs are clean.
+4. After cleanup, begin adding what is required for **data decryption**.
+
 ### October 8, 2026 — MTK Boot Implementation
 
 * Soong now creates the required components; had to add the **source path in `device.mk`**.
 * Added **`libbase` as a shared library in `Android.bp`** to provide the required symbol declaration.
 * Added the **`bootctl` directory** to the device tree to supply the **ported codebase for the MTK boot implementation**.
 * The ported MTK boot implementation for **`android.hardware.boot@1.0-impl-1.2-mtkimpl.so`** now finally compiles successfully.
-* Next step is to **install clean**, then build again and take a fresh recovery log.
-* Once the new build is tested, I will fix whatever else comes up to get **TWRP booting again**.
-* Because some things have changed with the new boot implementation, some previously made changes may need to be restored or adjusted.
+* Next step was to **install clean**, then build again and take a fresh recovery log.
+* Once the new build was tested, the remaining issues would be fixed to get **TWRP booting again**.
+* Because some things changed with the new boot implementation, some previously made changes may need to be restored or adjusted.
 * Some **HIDL components may need to be put back**, but that will not be known until the build is complete and a new log is taken.
-* The immediate goal is to test the working MTK boot implementation source, capture the new log, and continue from whatever the completed build reports.
+* The immediate goal was to test the working MTK boot implementation source, capture the new log, and continue from whatever the completed build reports.
 
 ### October 7, 2026 — Boot HAL / BCB Investigation
 

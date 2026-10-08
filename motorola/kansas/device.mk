@@ -9,8 +9,7 @@ LOCAL_PATH := device/motorola/kansas
 $(call inherit-product, device/motorola/kansas/recovery_files.mk)
 #$(call inherit-product, $(LOCAL_PATH)/fstab.mk)
 
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+PRODUCT_SOONG_NAMESPACES += device/motorola/kansas/bootctrl
 
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -25,16 +24,16 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.0-impl-1.2-mtkimpl \
+    android.hardware.boot@1.2-mtkimpl.recovery \
+    android.hardware.boot@1.2-service \
     bootctrl.mt6835
     #android.hardware.boot@1.0-service \
-    #android.hardware.boot@1.2-mtkimpl.recovery \
     #android.hardware.boot@1.0-impl \
 
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-service
+#PRODUCT_PACKAGES += \
+#    android.hardware.boot@1.2-impl \
+#    android.hardware.boot@1.2-impl.recovery \
+#    android.hardware.boot@1.2-service
 
 # Hidl memory
 PRODUCT_PACKAGES += \
