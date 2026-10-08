@@ -34,13 +34,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl">
-        <name>android.hardware.health.storage</name>
-        <interface>
-            <name>IStorage</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <vendor-ndk>
         <version>33</version>
     </vendor-ndk>

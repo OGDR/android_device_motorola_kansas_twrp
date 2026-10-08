@@ -13,24 +13,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>android.hardware.audio</name>
-        <version>6.0</version>
-        <version>7.0-1</version>
-        <interface>
-            <name>IDevicesFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.audio.effect</name>
-        <version>6.0</version>
-        <version>7.0</version>
-        <interface>
-            <name>IEffectsFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="aidl">
         <name>android.hardware.authsecret</name>
         <interface>
@@ -44,65 +26,6 @@
         <interface>
             <name>IAuthSecret</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.automotive.audiocontrol</name>
-        <version>1-2</version>
-        <interface>
-            <name>IAudioControl</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.automotive.can</name>
-        <version>1.0</version>
-        <interface>
-            <name>ICanBus</name>
-            <regex-instance>.*</regex-instance>
-        </interface>
-        <interface>
-            <name>ICanController</name>
-            <regex-instance>.*</regex-instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.automotive.evs</name>
-        <interface>
-            <name>IEvsEnumerator</name>
-            <instance>default</instance>
-            <regex-instance>[a-z]+/[0-9]+</regex-instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.automotive.evs</name>
-        <version>1.0-1</version>
-        <interface>
-            <name>IEvsEnumerator</name>
-            <instance>default</instance>
-            <regex-instance>[a-z]+/[0-9]+</regex-instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.automotive.occupant_awareness</name>
-        <interface>
-            <name>IOccupantAwareness</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.automotive.vehicle</name>
-        <interface>
-            <name>IVehicle</name>
-            <regex-instance>.*</regex-instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.automotive.vehicle</name>
-        <version>2.0</version>
-        <interface>
-            <name>IVehicle</name>
-            <regex-instance>.*</regex-instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -138,73 +61,10 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.bluetooth</name>
-        <version>1.0-1</version>
-        <interface>
-            <name>IBluetoothHci</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.bluetooth.audio</name>
-        <version>2</version>
-        <interface>
-            <name>IBluetoothAudioProviderFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.boot</name>
         <version>1.2</version>
         <interface>
             <name>IBootControl</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.broadcastradio</name>
-        <version>1.0-1</version>
-        <interface>
-            <name>IBroadcastRadioFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.broadcastradio</name>
-        <version>2.0</version>
-        <interface>
-            <name>IBroadcastRadio</name>
-            <regex-instance>.*</regex-instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.camera.provider</name>
-        <version>2.4-7</version>
-        <interface>
-            <name>ICameraProvider</name>
-            <regex-instance>[^/]+/[0-9]+</regex-instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.camera.provider</name>
-        <interface>
-            <name>ICameraProvider</name>
-            <regex-instance>[^/]+/[0-9]+</regex-instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.cas</name>
-        <version>1.1-2</version>
-        <interface>
-            <name>IMediaCasService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.confirmationui</name>
-        <version>1.0</version>
-        <interface>
-            <name>IConfirmationUI</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -250,22 +110,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.gnss</name>
-        <version>2.0-1</version>
-        <interface>
-            <name>IGnss</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.gnss</name>
-        <version>2</version>
-        <interface>
-            <name>IGnss</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.graphics.allocator</name>
         <version>2.0</version>
         <version>3.0</version>
@@ -304,6 +148,20 @@
         <version>4.0</version>
         <interface>
             <name>IMapper</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.health</name>
+        <interface>
+            <name>IHealth</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.health.storage</name>
+        <interface>
+            <name>IStorage</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -354,79 +212,10 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>android.hardware.media.c2</name>
-        <version>1.0-2</version>
-        <interface>
-            <name>IComponentStore</name>
-            <instance>software</instance>
-            <regex-instance>default[0-9]*</regex-instance>
-            <regex-instance>vendor[0-9]*_software</regex-instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.media.c2</name>
-        <version>1.0</version>
-        <interface>
-            <name>IConfigurable</name>
-            <instance>default</instance>
-            <instance>software</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.media.omx</name>
-        <version>1.0</version>
-        <interface>
-            <name>IOmx</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IOmxStore</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="aidl">
         <name>android.hardware.memtrack</name>
         <interface>
             <name>IMemtrack</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.net.nlinterceptor</name>
-        <interface>
-            <name>IInterceptor</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.neuralnetworks</name>
-        <version>1.0-3</version>
-        <interface>
-            <name>IDevice</name>
-            <regex-instance>.*</regex-instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.neuralnetworks</name>
-        <version>1-4</version>
-        <interface>
-            <name>IDevice</name>
-            <regex-instance>.*</regex-instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.nfc</name>
-        <version>1.2</version>
-        <interface>
-            <name>INfc</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.nfc</name>
-        <interface>
-            <name>INfc</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -458,76 +247,6 @@
         <interface>
             <name>IPowerStats</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.radio</name>
-        <version>1.2</version>
-        <interface>
-            <name>ISap</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.config</name>
-        <interface>
-            <name>IRadioConfig</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.data</name>
-        <interface>
-            <name>IRadioData</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-            <instance>slot3</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.messaging</name>
-        <interface>
-            <name>IRadioMessaging</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-            <instance>slot3</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.modem</name>
-        <interface>
-            <name>IRadioModem</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-            <instance>slot3</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.network</name>
-        <interface>
-            <name>IRadioNetwork</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-            <instance>slot3</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.sim</name>
-        <interface>
-            <name>IRadioSim</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-            <instance>slot3</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.radio.voice</name>
-        <interface>
-            <name>IRadioVoice</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-            <instance>slot3</instance>
         </interface>
     </hal>
     <hal format="aidl">
@@ -604,72 +323,10 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.soundtrigger</name>
-        <version>2.3</version>
-        <interface>
-            <name>ISoundTriggerHw</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.soundtrigger3</name>
-        <interface>
-            <name>ISoundTriggerHw</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.tetheroffload.config</name>
-        <version>1.0</version>
-        <interface>
-            <name>IOffloadConfig</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.tetheroffload.control</name>
-        <version>1.1</version>
-        <interface>
-            <name>IOffloadControl</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.thermal</name>
         <version>2.0</version>
         <interface>
             <name>IThermal</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.tv.cec</name>
-        <version>1.0-1</version>
-        <interface>
-            <name>IHdmiCec</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.tv.input</name>
-        <version>1.0</version>
-        <interface>
-            <name>ITvInput</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.tv.tuner</name>
-        <version>1.0-1</version>
-        <interface>
-            <name>ITuner</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.tv.tuner</name>
-        <interface>
-            <name>ITuner</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -693,13 +350,6 @@
         <version>1.0-2</version>
         <interface>
             <name>IUsbGadget</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.uwb</name>
-        <interface>
-            <name>IUwb</name>
             <instance>default</instance>
         </interface>
     </hal>

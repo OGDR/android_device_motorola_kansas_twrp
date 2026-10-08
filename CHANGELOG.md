@@ -2,6 +2,43 @@
 
 ## Kansas TWRP Development
 
+### October 8, 2026 — MTK Boot Implementation
+
+* Soong now creates the required components; had to add the **source path in `device.mk`**.
+* Added **`libbase` as a shared library in `Android.bp`** to provide the required symbol declaration.
+* Added the **`bootctl` directory** to the device tree to supply the **ported codebase for the MTK boot implementation**.
+* The ported MTK boot implementation for **`android.hardware.boot@1.0-impl-1.2-mtkimpl.so`** now finally compiles successfully.
+* Next step is to **install clean**, then build again and take a fresh recovery log.
+* Once the new build is tested, I will fix whatever else comes up to get **TWRP booting again**.
+* Because some things have changed with the new boot implementation, some previously made changes may need to be restored or adjusted.
+* Some **HIDL components may need to be put back**, but that will not be known until the build is complete and a new log is taken.
+* The immediate goal is to test the working MTK boot implementation source, capture the new log, and continue from whatever the completed build reports.
+
+### October 7, 2026 — Boot HAL / BCB Investigation
+
+* The crash found in last night's dump was occurring in **`get_misc_blk_device()`** while the MTK boot HAL was trying to locate the `/misc` block device.
+* The crash was traced to the Motorola prebuilt MTK boot HAL being built against an older **`FstabEntry` ABI/layout (`0x1a8`)**, while Android 16 uses the newer **`FstabEntry` layout (`0x268`)**.
+* This issue led to the investigation of the **MTK boot implementation**.
+* Moved the boot entries into the **vendor manifest** in an attempt to fix the issue.
+* Deleted the existing `.so`, and I am making my own replacement using **ported code from another device for the MTK boot implementation**.
+* Building and testing the changes now.
+* If this does not work, I will have to **recode small portions of the MTK boot implementation** for the Moto G 5G 2025.
+
+### October 5, 2026 — Recovery / VINTF Fixes
+
+* Fixed the issues introduced by switching the recovery fstab back to the **5-field format**.
+* Addressed the resulting **VINTF, manifest, boot implementation, and other recovery errors**.
+* Added `android.hardware.health@2.1` as required to resolve the health HAL compatibility issue.
+* All identified VINTF, manifest, boot, and related recovery issues have now been addressed.
+* **Current Issue:** Fixing BCB handling caused by AIDL not transitioning back to the **HIDL state**.
+* The BCB issue currently causes recovery to continuously restart, resulting in the device becoming stuck at the **Motorola manufacturer logo**.
+* **To Do:** Fix the BCB/AIDL-to-HIDL recovery restart issue so TWRP can complete its boot process normally.
+
+### October 4, 2026 — Recovery Fstab
+
+* Switched the recovery fstab back to the **5-field format** required by TWRP.
+* This restored the recovery fstab structure to match the expected TWRP format.
+
 ### September 30, 2026 — UI / Recovery Functionality
 
 * Fixed the display rendering issue.
@@ -23,120 +60,62 @@
 
 * TWRP UI bring-up now **boots successfully**.
 * **Touchscreen is working**.
-* **To Do:** Fix the display rendering issue.
 
 ### September 28, 2026 — UI Bring-Up Phase
 
-* Switched the build to focus exclusively on **TWRP UI bring-up and stabilization**.
-* Temporarily disabled the crypto, KeyMint, FBE, and related security components from the recovery environment.
-* The goal is to avoid attempting to bring up the entire recovery stack simultaneously and instead isolate the UI and basic recovery functionality first.
-* **Next Phase:** Once the TWRP UI is fully functional and stable, begin restoring the crypto, KeyMint, FBE, and related components incrementally.
-* This staged approach will make it easier to identify and resolve problems as each subsystem is reintroduced.
+* Switched build to focus exclusively on TWRP UI bring-up/stabilization.
+* Temporarily disabled crypto, KeyMint, FBE, and related security components.
+* Once UI is stable, restore crypto/KeyMint/FBE incrementally.
 
 ### September 23, 2026 — Recovery / Decrypt Work
 
-#### Earlier Build — Trustonic Stack into Recovery
-
-* Added the Trustonic TEE, KeyMint, and Gatekeeper binaries under `recovery/root/vendor/bin/hw/`:
-
-  * `vendor.trustonic.tee@1.1-service`
-  * `android.hardware.security.keymint@2.0-service.trustonic`
-  * `android.hardware.gatekeeper@1.0-service`
-* Added the matching init scripts under `recovery/root/vendor/etc/init/`:
-
-  * `tee.rc`
-  * `vendor.trustonic.tee@1.1-service.rc`
-  * `android.hardware.security.keymint@2.0-service.trustonic.rc`
-  * `android.hardware.gatekeeper@1.0-service.rc`
-* Added the required Trustonic and Gatekeeper libraries under `recovery/root/vendor/lib64/` and `recovery/root/vendor/lib64/hw/`:
-
-  * `libMcClient.so`
-  * `libMcRegistry.so`
-  * `vendor.trustonic.tee@1.0.so`
-  * `vendor.trustonic.tee@1.1.so`
-  * `libkeymint.so`
-  * `libkeymaster_messages.so`
-  * `gatekeeper.trustonic.so`
-  * `libMcGatekeeper.so`
-  * `android.hardware.gatekeeper@1.0-impl.so`
-* Kept the existing touch modules, firmware, and TWRP recovery layout.
-* Fixed the `libbase` `Trim` symbol/link issues using `patchelf`, since TWRP 16 does not support the legacy `LD_SHIM_LIBS` mechanism.
-
-#### Current Build — Service Start Order / Naming Fixes
-
-* Fixed `vendor/etc/init/tee.rc` to start `mobicore` and then `tee-1-1`, matching the service name that actually exists.
-* Updated `init.recovery.mt6835.rc` to start the Trustonic services in the proper order:
-
-  1. `tee-1-1`
-  2. `vendor.keymint-trustonic`
-  3. `vendor.gatekeeper-1-0`
-* Changed `keystore2` startup so it waits for KeyMint:
-
-  * `keystore2` now starts after `vendor.keymint-trustonic` reaches the `running` state.
-* Disabled the early automatic `keystore2` startup in `system/etc/init/keystore2.rc` by commenting out its `late-init` start, preventing it from racing ahead of KeyMint.
-
-#### Goal
-
-* Prevent the `keystore2` `HARDWARE_TYPE_UNAVAILABLE` abort.
-* Enable the Trustonic KeyMint path required for FBE decryption in TWRP.
-* Added additional `.so` libraries required by the TEE, crypto, and FBE components and their dependencies.
-
-#### To Do
-
-* Continue adding the remaining required TEE, crypto, and FBE libraries to the recovery environment as dependencies are identified.
+* Trustonic TEE/KeyMint/Gatekeeper binaries, init scripts, and libraries added; touch modules/firmware kept.
+* `libbase` Trim symbol/link issues fixed using `patchelf`.
+* Fixed service start order and `keystore2` startup dependency.
+* Goal: prevent KeyMint/keystore2 abort and enable the FBE path later.
+* To Do: continue adding required TEE/crypto/FBE libraries as dependencies are identified.
 
 ### September 22, 2026
 
-* The shims could not be applied using the legacy `TARGET_LD_SHIM_LIBS` mechanism because the required libraries were not being prepared in time.
-* Used `patchelf` on the two affected `.so` files to add the required `libbase_shim.so` dependency.
-* This allowed the affected libraries to resolve the required symbols from the Android 15 `libbase.so` implementation that Motorola is still using.
-* Verified that the previously missing symbols can now be resolved, fixing the compatibility issue.
+* Legacy `TARGET_LD_SHIM_LIBS` could not be used; `patchelf` added `libbase_shim.so` dependency to two affected `.so` files.
+* Verified missing symbols resolve against Android 15 Motorola `libbase.so`.
 
 ### September 21, 2026
 
-* Fixed the remaining VINTF compatibility issues.
-* Added shims for:
-
-  * `android.hardware.boot@1.0-impl-1.2-mtkimpl.so`
-  * `android.hardware.health-service.example_recovery`
-* Added the shims to resolve the missing reference symbol:
-
-  * `_ZN7android4base4TrimERKNSt3__112basic_stringIcNS1_11char_traitsIcENS1_9allocatorIcEEEE`
+* Fixed remaining VINTF issues.
+* Added shims for boot implementation and health service.
+* Added shims for missing `android::base::Trim` symbol.
 
 ### September 20, 2026
 
-* Fixed the manifest error for `system/etc/vintf/manifest.xml`.
+* Fixed `system/etc/vintf/manifest.xml` manifest error.
 
 ### September 19, 2026
 
-* Figured out the correct stock `vendor_ramdisk00` and the proper format to use alongside the TWRP recovery ramdisk.
-* Stock `vendor_ramdisk00` is **0x1** and the TWRP ramdisk is **0x2**.
-* Android is booting again with the stock vendor ramdisk and TWRP recovery ramdisk working together.
-* Started putting components back into `recovery/root`, placing them back in the proper locations and structure.
-* **To Do:** Determine exactly what needs to be restored to `recovery/root` so the stock vendor ramdisk and TWRP recovery ramdisk boot together in sync without starting the previous boot loop.
+* Correct stock `vendor_ramdisk00` and format found; stock `0x1` + TWRP `0x2`.
+* Android booting again with stock vendor ramdisk + TWRP recovery ramdisk.
+* Started restoring components into `recovery/root` in proper locations.
+* To Do: restore needed components in sync without boot loop.
 
 ### September 18, 2026
 
-* Fixed the Kansas board configuration.
-* Board configuration is now correct.
-* Shrunk the stock vendor_boot CPIO and compressed it to `.lz4`, reducing it to approximately **27 MB**.
+* Fixed Kansas BoardConfig.
+* Shrunk stock vendor_boot CPIO to approximately 27 MB and compressed to `.lz4`.
 
 ### September 17, 2026
 
-* Added `build/tools/vendor_boot.mk`.
-* Updated the build process so the stock `vendor_boot` CPIO ramdisk is placed into the generated vendor_boot image.
+* Added `build/tools/vendor_boot.mk` to place the stock vendor_boot CPIO into the generated vendor_boot.
 
 ### Early September 2026
 
-* Switched from **TWRP 14.1** to the **TWRP 16 test branch** so the `init` executable could be built correctly and fix the broken `init` symlink.
+* Switched from TWRP 14.1 to the TWRP 16 test branch for the correct `init` executable and to resolve the broken `init` symlink.
 
 ### Early September 2026 — Android Boot
 
-* The Android system successfully booted from the ongoing Kansas TWRP development work.
-* This confirmed that the vendor_boot and recovery ramdisk configuration was progressing toward a working recovery environment.
+* Android successfully booted from the ongoing Kansas TWRP work.
 
 ### July 23, 2026 — Initial Development
 
 * Began Kansas TWRP development.
-* Initial build and device bring-up work started.
-* The first build did **not** boot; subsequent development focused on identifying the vendor_boot, ramdisk, BoardConfig, and recovery environment requirements needed to reach a booting configuration.
+* Initial build/device bring-up started.
+* First build did not boot; later work focused on vendor_boot, ramdisk, BoardConfig, and the recovery environment.

@@ -1,5 +1,12 @@
 LOCAL_PATH := device/motorola/kansas/recovery/root
 
+# HIDL memory libraries
+PRODUCT_COPY_FILES += \
+#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory@1.0.so:recovery/root/system/lib64/android.hidl.memory@1.0.so \
+#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory@1.0-impl.so:recovery/root/system/lib64/android.hidl.memory@1.0-impl.so \
+#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory.token@1.0.so:recovery/root/system/lib64/android.hidl.memory.token@1.0.so \
+#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlmemory.so:recovery/root/system/lib64/libhidlmemory.so
+
 # ================================================================
 # Recovery root init files and rc files
 # ================================================================

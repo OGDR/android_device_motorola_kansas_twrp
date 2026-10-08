@@ -1,7 +1,5 @@
 service boot-hal-1-2 /system/bin/hw/android.hardware.boot@1.2-service
-    class hal
+    class half
     user root
     group system
-    oneshot
-    disabled
     seclabel u:r:recovery:s0

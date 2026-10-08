@@ -22,15 +22,18 @@
         manifest.xml
 -->
 <manifest version="5.0" type="device" target-level="7">
+    
     <hal format="hidl">
-    <name>android.hardware.boot</name>
-    <transport>hwbinder</transport>
-    <version>1.0</version>
-    <interface>
-        <name>IBootControl</name>
-        <instance>default</instance>
-    </interface>
-    <fqname>@1.0::IBootControl/default</fqname>
+        <name>android.hardware.boot</name>
+        <transport>hwbinder</transport>
+        <version>1.2</version>
+        <interface>
+            <name>IBootControl</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IBootControl/default</fqname>
+        <fqname>@1.1::IBootControl/default</fqname>
+        <fqname>@1.2::IBootControl/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.gatekeeper</name>
@@ -63,41 +66,14 @@
         <fqname>@4.0::IMapper/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.secure_element</name>
-        <transport>hwbinder</transport>
-        <version>1.2</version>
-        <interface>
-            <name>ISecureElement</name>
-            <instance>SIM1</instance>
-            <instance>SIM2</instance>
-        </interface>
-        <fqname>@1.2::ISecureElement/SIM1</fqname>
-        <fqname>@1.2::ISecureElement/SIM2</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.security.keymint</name>
-        <version>2</version>
-        <fqname>IKeyMintDevice/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.apmonitor</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>IApmService</name>
-            <instance>apm_hidl_service</instance>
-        </interface>
-        <fqname>@2.0::IApmService/apm_hidl_service</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.atci</name>
-        <transport>hwbinder</transport>
+        <name>android.hardware.renderscript</name>
+        <transport arch="32+64">passthrough</transport>
         <version>1.0</version>
         <interface>
-            <name>IAtcid</name>
+            <name>IDevice</name>
             <instance>default</instance>
         </interface>
-        <fqname>@1.0::IAtcid/default</fqname>
+        <fqname>@1.0::IDevice/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.mediatek.hardware.composer_ext</name>
@@ -108,26 +84,6 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::IComposerExt/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.dmc</name>
-        <transport>hwbinder</transport>
-        <version>1.2</version>
-        <interface>
-            <name>IDmcService</name>
-            <instance>dmc_hidl_service</instance>
-        </interface>
-        <fqname>@1.2::IDmcService/dmc_hidl_service</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.mmagent</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IMMAgent</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::IMMAgent/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.mediatek.hardware.mtkpower</name>
@@ -143,30 +99,6 @@
         </interface>
         <fqname>@1.2::IMtkPerf/default</fqname>
         <fqname>@1.2::IMtkPower/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.nvram</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>INvram</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::INvram/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.nwk_opt</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>INwkOpt</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::INwkOpt/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>vendor.mediatek.hardware.pq_aidl</name>
-        <fqname>IPictureQuality_AIDL/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.trustonic.alps.alps_device</name>

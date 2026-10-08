@@ -2,7 +2,7 @@
     #create mountpoint for /mnt/vendor/persist partition
     #mkdir /mnt/vendor/persist 0771 system system
 
-@on post-fs
+#on post-fs
     #chown system system /mnt/vendor/persist
     #chmod 0771 /mnt/vendor/persist
 

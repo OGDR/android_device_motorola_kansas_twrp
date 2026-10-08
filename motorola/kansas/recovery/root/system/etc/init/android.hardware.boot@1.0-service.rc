@@ -1,8 +1,0 @@
-# Boot control HAL for recovery (HIDL 1.2 / MTK impl)
-service boot-hal-1-0 /system/bin/hw/android.hardware.boot@1.0-service
-    class hal
-    user root
-    group system
-    oneshot
-    disabled
-    seclabel u:r:recovery:s0
