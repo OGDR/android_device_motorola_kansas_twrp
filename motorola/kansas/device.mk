@@ -42,6 +42,10 @@ PRODUCT_PACKAGES += \
     android.hidl.memory.token@1.0 \
     libhidlmemory
 
+# Health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-service
+
 #PRODUCT_STATIC_BOOT_CONTROL_HAL := \
 #    bootctrl.mt6835 \
 

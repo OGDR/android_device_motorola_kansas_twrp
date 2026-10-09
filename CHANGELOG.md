@@ -9,6 +9,8 @@
 * Fixed the reason the boot implementation was not compiling, which was caused by how the source path was set up in **`device.mk`**.
 * The new ported MTK boot implementation is now working well enough for TWRP to boot.
 
+Side Note: twrp uses health hal @2.1
+
 #### To Do
 
 1. Fix anything reported in the **new recovery log**.
