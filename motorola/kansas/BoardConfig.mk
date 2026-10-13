@@ -201,7 +201,7 @@ TARGET_SCREEN_HEIGHT := 1600
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 409
-TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/capacity
+TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery
 
 # Maintainer
 TW_DEVICE_VERSION := OGDR

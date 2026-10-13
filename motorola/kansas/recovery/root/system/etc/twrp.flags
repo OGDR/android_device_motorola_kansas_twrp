@@ -78,3 +78,5 @@
 /proinfo           emmc    /dev/block/by-name/proinfo           flags=display="Proinfo";backup=1
 /protect1          ext4    /dev/block/by-name/protect1          flags=display="Protect1";backup=1
 /protect2          ext4    /dev/block/by-name/protect2          flags=display="Protect2";backup=1
+
+/mnt/vendor/persist ext4 /dev/block/by-name/persist flags=display="Vendor Persist";backup=1
