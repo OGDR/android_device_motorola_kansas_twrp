@@ -1,14 +1,44 @@
 # Changelog
 
+## To Do — Current Priorities
+
+1. **Test the recovery SELinux relabeling change.** Rebuild TWRP and boot the updated recovery; verify whether `restorecon_recursive` fixes the incorrect `rootfs` labels blocking Trustonic KeyMint.
+2. **Get Trustonic KeyMint running reliably.** Continue from the latest AVC denials and service logs without adding broad SELinux permissions unnecessarily.
+3. **Resolve the remaining Trustonic TEE issues.** Investigate `/dev/mobicore`, trustlet loading, and the invalid `persist_mobicore_data_file` context after the KeyMint dependency issue is addressed.
+4. **Fix anything reported in new recovery logs** as the remaining boot and service issues are worked out.
+5. **Investigate and implement Android File-Based Encryption (FBE) decryption and reliable `/data` mounting.**
+6. Clean up the recovery environment once the remaining functional issues are resolved.
+
+---
+
 ## Kansas TWRP Development
 
-### Project Status — October 13, 2026
+### Project Status — October 14, 2026
 
 * **UI bring-up and stabilization are complete.**
 * **MTK boot implementation integration is complete.**
 * Core recovery functionality is working, including display, touchscreen, ADB, charging, battery reporting, and fastbootd.
 * The remaining major milestone is **Android File-Based Encryption (FBE) decryption and reliable `/data` mounting**.
-* Successful decryption and access to user data will be the final major functional objective for completing the Kansas TWRP project.
+* Trustonic TEE/KeyMint startup and its SELinux labeling issues are being investigated as part of restoring the crypto and FBE path.
+* Successful decryption and access to user data remain the final major functional objective for completing the Kansas TWRP project.
+
+### October 14, 2026 — Recovery Init Cleanup and Trustonic Startup
+
+* Cleaned up `init.recovery.mt6835.rc`, removing unnecessary items that were no longer needed.
+* Reorganized the init configuration so the recovery setup and service startup sequence are arranged in the intended order.
+* Added the required directory creation and mount setup for the recovery environment, including the persist and Trustonic `tzapp` paths.
+* Integrated the Mobicore → Trustonic TEE → KeyMint startup sequence, with `keystore2` started after KeyMint reports running.
+* Kept the Gatekeeper service configured separately from the TEE/KeyMint/`keystore2` dependency chain.
+* Continued investigating SELinux denials that prevent the Trustonic KeyMint service from loading its shared-library dependencies.
+* Added the following lines to `init.recovery.mt6835.rc` immediately before `start mobicore`:
+
+  ```rc
+  restorecon_recursive /system
+  restorecon_recursive /vendor
+  ```
+
+* **Purpose:** Apply the existing SELinux file-context mappings recursively before the Mobicore → TEE → KeyMint startup chain begins. This is intended to correct files incorrectly labeled `rootfs`, including libraries KeyMint needs.
+* **Status: Pending rebuild and testing.** The running recovery still showed an AVC denial for `libcrypto.so` labeled `rootfs`; the new init change must be built and booted before its effect can be evaluated.
 
 ### October 13, 2026 — Novatek Touchscreen Delay Reduced
 
@@ -27,13 +57,6 @@
 Side Note: TWRP uses health HAL `@2.1`.
 
 Side Note: Change line 740 in `bootable/recovery/data.cpp` from `true` to `false` so MTP is not enabled by default but can still be enabled using the toggle: `persist_["tw_mtp_enabled"] = false;`
-
-#### To Do
-
-1. Fix anything reported in the **new recovery log**.
-2. Continue fixing anything that appears in **future logs** as the remaining boot issues are worked out.
-3. Clean up the recovery environment once the logs are clean.
-4. Investigate and implement **FBE data decryption and `/data` mounting support**.
 
 ### October 8, 2026 — MTK Boot Implementation
 
@@ -65,7 +88,7 @@ Side Note: Change line 740 in `bootable/recovery/data.cpp` from `true` to `false
 * Addressed the identified VINTF, manifest, boot, and related recovery issues.
 * **Issue under investigation:** BCB handling associated with AIDL not transitioning back to the **HIDL state**.
 * The BCB issue caused recovery to continuously restart, leaving the device stuck at the **Motorola manufacturer logo**.
-* **To Do:** Resolve the BCB/AIDL-to-HIDL recovery restart issue so TWRP can complete its boot process normally.
+* **Historical To Do:** Resolve the BCB/AIDL-to-HIDL recovery restart issue so TWRP can complete its boot process normally.
 
 ### October 4, 2026 — Recovery Fstab
 
@@ -81,8 +104,7 @@ Side Note: Change line 740 in `bootable/recovery/data.cpp` from `true` to `false
 * Battery percentage is now displayed correctly in TWRP.
 * **Battery charging now works while in TWRP**.
 
-#### To Do
-
+Historical To Do:
 * Resolve any remaining recovery log issues related to the **boot implementation**.
 * Review remaining recovery log errors and warnings after the boot implementation issues are resolved.
 * Fix **reboot to Android** from TWRP. Currently, rebooting from TWRP does not boot Android directly; the device must first be booted into the bootloader and then Android.
@@ -105,7 +127,7 @@ Side Note: Change line 740 in `bootable/recovery/data.cpp` from `true` to `false
 * `libbase` Trim symbol/link issues fixed using `patchelf`.
 * Fixed service start order and the `keystore2` startup dependency.
 * Goal: prevent KeyMint/`keystore2` aborts and enable the FBE path later.
-* To Do: continue adding required TEE/crypto/FBE libraries as dependencies are identified.
+* Historical To Do: continue adding required TEE/crypto/FBE libraries as dependencies are identified.
 
 ### September 22, 2026
 
@@ -127,7 +149,7 @@ Side Note: Change line 740 in `bootable/recovery/data.cpp` from `true` to `false
 * Identified the correct stock `vendor_ramdisk00` and format; stock `0x1` plus TWRP `0x2`.
 * Android booting again with the stock vendor ramdisk plus the TWRP recovery ramdisk.
 * Started restoring components into `recovery/root` in their proper locations.
-* To Do: restore required components in sync without causing a boot loop.
+* Historical To Do: restore required components in sync without causing a boot loop.
 
 ### September 18, 2026
 
