@@ -1,6 +1,8 @@
 on early-init
     mkdir /dev/block/bootdevice 0755 root root
     symlink /dev/block/by-name /dev/block/bootdevice/by-name
+    mkdir /sys/kernel/tracing 0755 root root
+    mount tracefs tracefs /sys/kernel/tracing
 
 on init
     mkdir /mnt/vendor/persist 0700 root root
@@ -10,8 +12,8 @@ on init
     setprop sys.usb.ffs.aio_compat 1
     setprop crypto.ready 1
     mkdir /tmp/misc 0755 root root
-    mkdir /tmp/misc/keystore 0700 root root
-
+    mkdir /tmp/misc/keystore 0700 system system
+    
 on post-fs
     insmod /lib/modules/sensors_class.ko
     insmod /lib/modules/focaltech_0flash_mmi_v3.ko
@@ -28,7 +30,17 @@ on post-fs
     symlink /dev/block/by-name/preloader_b /dev/block/by-name/preloader_ufs_b
     symlink /dev/block/mapper/pl_a /dev/block/by-name/preloader_raw_a
     symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
-    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist
+
+    wait /dev/block/by-name/persist 5
+    mkdir /mnt/vendor/persist 0771 system system
+    mkdir /mnt/vendor/persist/mcRegistry 0771 system system
+    mkdir /mnt/vendor/persist/mobicore 0770 system system
+    exec u:r:recovery:s0 root root -- /system/bin/sh -c "echo '=== before mount ===' > /tmp/persist_mount.log; ls -ld /mnt/vendor/persist /mnt/vendor/persist/mcRegistry /mnt/vendor/persist/mobicore >> /tmp/persist_mount.log 2>&1; mount -t ext4 /dev/block/by-name/persist /mnt/vendor/persist >> /tmp/persist_mount.log 2>&1; echo '=== after mount ===' >> /tmp/persist_mount.log; mount | grep persist >> /tmp/persist_mount.log; ls -ld /mnt/vendor/persist /mnt/vendor/persist/mcRegistry /mnt/vendor/persist/mobicore >> /tmp/persist_mount.log 2>&1"
+    chown system system /mnt/vendor/persist
+    chmod 0771 /mnt/vendor/persist
+    restorecon /mnt/vendor/persist
+    restorecon /mnt/vendor/persist/mcRegistry
+    restorecon /mnt/vendor/persist/mobicore
     mkdir /mnt/vendor/tzapp 0755 root root
     mount ext4 /dev/block/by-name/tzapp_a /mnt/vendor/tzapp
     # if that fails try tzapp_b or ext4
@@ -36,6 +48,16 @@ on post-fs
     restorecon_recursive /system
     restorecon_recursive /vendor
 
+    start trustlet_backup
+service trustlet_backup /system/bin/init.mmi.backup.trustlet.sh
+    class main
+    user root
+    group root system
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:init.svc.trustlet_backup=stopped
     start mobicore
 
 on boot
@@ -58,29 +80,35 @@ on property:init.svc.tee-1-1=running
 on property:init.svc.vendor.keymint-trustonic=running
     start keystore2
 
-service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
-    class main
-    user root
-    group root system
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
 service tee-1-1 /vendor/bin/hw/vendor.trustonic.tee@1.1-service
     class hal
-    user root
-    group root system
+    user system
+    group system
     seclabel u:r:recovery:s0
 
 service vendor.keymint-trustonic /vendor/bin/hw/android.hardware.security.keymint@2.0-service.trustonic
-    class hal
-    user root
-    group root system
-    seclabel u:r:hal_keymint_default:s0
-    #seclabel u:r:recovery:s0
+    class early_hal
+    user system
+    group system
+    #seclabel u:r:hal_keymint_default:s0
+    seclabel u:r:recovery:s0
 
 service vendor.gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     class hal
-    user root
-    group root system
+    user system
+    group system
     seclabel u:r:recovery:s0
+
+service keystore2 /system/bin/keystore2 /tmp/misc/keystore
+    class core
+    user system
+    group system
+    seclabel u:r:recovery:s0
+
+#service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+#    class main
+#    user root
+#    group root system
+#    disabled
+#    oneshot
+#    seclabel u:r:recovery:s0

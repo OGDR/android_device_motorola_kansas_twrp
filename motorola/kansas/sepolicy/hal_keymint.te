@@ -1,1 +1,5 @@
 #allow recovery hal_keymint_service:service_manager add;
+allow hal_keymint_default mobicore_user_device:chr_file {
+    ioctl read write getattr lock append map open watch watch_reads
+};
+allow hal_keymint_default mnt_vendor_trustlet_file:dir search;

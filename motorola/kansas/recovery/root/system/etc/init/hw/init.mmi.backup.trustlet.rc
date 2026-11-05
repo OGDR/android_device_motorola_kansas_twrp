@@ -1,0 +1,7 @@
+service trustlet_backup /system/bin/init.mmi.backup.trustlet.sh
+    class main
+    user root
+    group root system
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0

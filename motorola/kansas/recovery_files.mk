@@ -1,11 +1,20 @@
 LOCAL_PATH := device/motorola/kansas/recovery/root
 
+#================================================================
+
+# Copy over to etc selinux since build was not adding appending to file. There you must just copy lines to already out file and use that file in sepolicy folder instaed
+
+#PRODUCT_COPY_FILES += \
+#    $(DEVICE_PATH)/sepolicy/vendor_file_contexts:recovery/root/vendor/etc/selinux/vendor_file_contexts \
+#    $(DEVICE_PATH)/sepolicy/vendor_property_contexts:recovery/root/vendor/etc/selinux/vendor_property_contexts
+
+#================================================================
+
 # HIDL memory libraries
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
+#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlmemory.so:recovery/root/system/lib64/libhidlmemory.so \
 #    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory@1.0.so:recovery/root/system/lib64/android.hidl.memory@1.0.so \
-#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory@1.0-impl.so:recovery/root/system/lib64/android.hidl.memory@1.0-impl.so \
-#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory.token@1.0.so:recovery/root/system/lib64/android.hidl.memory.token@1.0.so \
-#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlmemory.so:recovery/root/system/lib64/libhidlmemory.so
+#    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-sp/android.hidl.memory.token@1.0.so:recovery/root/system/lib64/android.hidl.memory.token@1.0.so
 
 # ================================================================
 # Recovery root init files and rc files

@@ -27,17 +27,17 @@
 # ============================================================
 # Logical partitions (erofs + ext4 fallback)
 # ============================================================
-/system            erofs   system                               flags=display="System";logical
-/system            ext4    system                               flags=display="System";logical
+/system_root            erofs   system                              flags=display="System";logical;backup=1;wipeingui;canbewiped
+/system_root            ext4    system                               flags=display="System";logical;backup=1;wipeingui;canbewiped
 
-/system_ext        erofs   system_ext                          flags=display="System Ext";logical
-/system_ext        ext4    system_ext                          flags=display="System Ext";logical
+/system_ext        erofs   system_ext                          flags=display="System Ext";logical;backup=1;wipeingui;canbewiped
+/system_ext        ext4    system_ext                          flags=display="System Ext";logical;backup=1;wipeingui;canbewiped
 
-/vendor            erofs   vendor                               flags=display="Vendor";logical
-/vendor            ext4    vendor                               flags=display="Vendor";logical
+/vendor            erofs   vendor                               flags=display="Vendor";logical;backup=1;wipeingui;canbewiped
+/vendor            ext4    vendor                               flags=display="Vendor";logical;backup=1;wipeingui;canbewiped
 
-/product           erofs   product                              flags=display="Product";logical
-/product           ext4    product                              flags=display="Product";logical
+/product           erofs   product                              flags=display="Product";logical;backup=1;wipeingui;canbewiped
+/product           ext4    product                              flags=display="Product";logical;backup=1;wipeingui;canbewiped
 
 #/odm               erofs   odm                                  flags=display="ODM";logical
 #/odm               ext4    odm                                  flags=display="ODM";logical
@@ -45,11 +45,11 @@
 # ============================================================
 # DLKM partitions (kernel modules - important for touch/display)
 # ============================================================
-/system_dlkm       erofs   system_dlkm                          flags=display="System DLKM";logical
-/system_dlkm       ext4    system_dlkm                          flags=display="System DLKM";logical
+/system_dlkm       erofs   system_dlkm                          flags=display="System DLKM";logical;backup=1;wipeingui;canbewiped
+/system_dlkm       ext4    system_dlkm                          flags=display="System DLKM";logical;backup=1;wipeingui;canbewiped
 
-/vendor_dlkm       erofs   vendor_dlkm                          flags=display="Vendor DLKM";logical
-/vendor_dlkm       ext4    vendor_dlkm                          flags=display="Vendor DLKM";logical
+/vendor_dlkm       erofs   vendor_dlkm                          flags=display="Vendor DLKM";logical;backup=1;wipeingui;canbewiped
+/vendor_dlkm       ext4    vendor_dlkm                          flags=display="Vendor DLKM";logical;backup=1;wipeingui;canbewiped
 
 #/odm_dlkm          erofs   odm_dlkm                             flags=display="ODM DLKM";logical
 #/odm_dlkm          ext4    odm_dlkm                             flags=display="ODM DLKM";logical
@@ -79,4 +79,12 @@
 /protect1          ext4    /dev/block/by-name/protect1          flags=display="Protect1";backup=1
 /protect2          ext4    /dev/block/by-name/protect2          flags=display="Protect2";backup=1
 
+
+/metadata  f2fs  /dev/block/by-name/metadata  flags=display="Metadata";backup=1
+/data      f2fs  /dev/block/by-name/userdata  flags=display="Data";backup=1;encryptable=footer
 /mnt/vendor/persist ext4 /dev/block/by-name/persist flags=display="Vendor Persist";backup=1
+
+# TWRP storage devices for GUI
+#/external_sd  auto  /devices/platform/soc/11240000.mmc*  flags=display="MicroSD";storage;wipeingui;removable
+#/usb-otg      auto  /devices/platform/usb_xhci*          flags=display="USB OTG";storage;wipeingui;removable
+#/usb-otg      auto  /devices/platform/soc/11201000.usb0/11200000.xhci*  flags=display="USB OTG";storage;wipeingui;removable

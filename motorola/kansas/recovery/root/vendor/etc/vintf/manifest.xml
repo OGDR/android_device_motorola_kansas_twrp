@@ -22,7 +22,7 @@
         manifest.xml
 -->
 <manifest version="5.0" type="device" target-level="7">
-    
+
     <hal format="hidl">
         <name>android.hardware.boot</name>
         <transport>hwbinder</transport>
@@ -44,7 +44,7 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::IGatekeeper/default</fqname>
-    </hal>
+    </hal>   
     <hal format="hidl">
         <name>android.hardware.graphics.allocator</name>
         <transport>hwbinder</transport>
@@ -56,24 +56,18 @@
         <fqname>@4.0::IAllocator/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.graphics.mapper</name>
-        <transport arch="32+64">passthrough</transport>
-        <version>4.0</version>
-        <interface>
-            <name>IMapper</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@4.0::IMapper/default</fqname>
+    <name>android.hidl.allocator</name>
+    <transport>hwbinder</transport>
+    <version>1.0</version>
+    <interface>
+        <name>IAllocator</name>
+        <instance>ashmem</instance>
+    </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.renderscript</name>
-        <transport arch="32+64">passthrough</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IDevice</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IDevice/default</fqname>
+    <name>android.hidl.token</name>
+    <transport>hwbinder</transport>
+    <fqname>@1.0::ITokenManager/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.mediatek.hardware.composer_ext</name>
@@ -99,16 +93,6 @@
         </interface>
         <fqname>@1.2::IMtkPerf/default</fqname>
         <fqname>@1.2::IMtkPower/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.trustonic.alps.alps_device</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IAlps</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::IAlps/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.trustonic.tee</name>

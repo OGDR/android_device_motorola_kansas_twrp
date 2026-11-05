@@ -1,0 +1,4 @@
+type proc_bootprof, fs_type, proc_type;
+
+# Allow vendor_init to write boot profiling messages.
+allow vendor_init proc_bootprof:file { write lock append map open };

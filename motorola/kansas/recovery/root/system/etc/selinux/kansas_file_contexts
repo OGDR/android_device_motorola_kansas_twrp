@@ -1,0 +1,3 @@
+/system/bin/hw/android\.hardware\.health-service\.example_recovery  u:object_r:hal_health_default_exec:s0
+#/system/bin/init\.mmi\.backup\.trustlet\.sh u:object_r:trustlet_backup_exec:s0
+/system/bin/init\.mmi\.backup\.trustlet\.sh u:object_r:system_file:s0

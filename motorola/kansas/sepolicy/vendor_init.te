@@ -1,8 +1,9 @@
-type persist_data_file, file_type;
+# Allow vendor_init to work on rootfs in recovery
+allow vendor_init rootfs:dir { write add_name create setattr };
 
-# vendor_init needs to update the persist filesystem root.
-allow vendor_init persist_data_file:dir setattr;
+# Allow creating the directories it needs
+#allow vendor_init system_data_file:dir { create write add_name setattr };
+allow vendor_init vendor_data_file:dir { create write add_name setattr };
 
-# vendor_init writes the boot profiling node.
-allow vendor_init proc:dir search;
-allow vendor_init proc:file write;
+# Specific for the mcRegistry / key_provisioning paths
+allow vendor_init labeledfs:dir { create write add_name setattr };

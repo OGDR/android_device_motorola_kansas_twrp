@@ -156,12 +156,15 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 #BOARD_KERNEL_MODULES += $(wildcard $(DEVICE_PATH)/recovery/root/vendor/lib/modules/*.ko)
 #BOARD_RECOVERY_KERNEL_MODULES += $(wildcard $(DEVICE_PATH)/recovery/root/vendor/lib/modules/*.ko)
 
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 # boot and recovery use LZMA for more compression and saves more space
 #LZMA_RAMDISK_TARGETS := boot,recovery
-# Use legacy LZ4 for the ramdisk
+#Use legacy LZ4 for the ramdisk
 BOARD_RAMDISK_USE_LZ4 := true
 
 #PRODUCT_COPY_FILES += \
@@ -173,11 +176,10 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.0
 
 # Recovery
+#BOARD_RECOVERY_IMAGE_PREPARE += cat $(DEVICE_PATH)/prop.default >> $(TARGET_RECOVERY_ROOT_OUT)/prop.default
 TARGET_RECOVERY_PIXEL_FORMAT := RGBA_8888  #RGBX_8888 and BGRA_8888 --> try for mtk6835 RGBX_8888
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 TW_THEME := portrait_hdpi
-#TW_EXTRA_LANGUAGES := false
+TW_EXTRA_LANGUAGES := false
 #TW_EXCLUDE_PYTHON := true
 #TW_DEFAULT_LANGUAGE := en
 TW_NO_SCREEN_BLANK := true
@@ -186,22 +188,24 @@ TW_LOAD_VENDOR_MODULES := true
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 TW_USE_TOOLBOX := true
 TW_USE_FASTBOOTD := true
-TW_INCLUDE_CRYPTO := false
-TW_INCLUDE_CRYPTO_FBE := false
-TW_INCLUDE_FBE_METADATA_DECRYPT := false
-#TW_USE_FSCRYPT_POLICY := 2
-
-# Additional properties
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_USE_FSCRYPT_POLICY := 2
+#TW_MTP_ENABLED := false
 
 # Screen (adjust if needed)
 TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1600
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 409
+TW_DEFAULT_BRIGHTNESS := 307
+TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery
+
+# Additional properties
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
 
 # Maintainer
 TW_DEVICE_VERSION := OGDR
@@ -213,7 +217,3 @@ TW_DEVICE_VERSION := OGDR
 #TARGET_LD_SHIM_LIBS := \
 #    /system/bin/hw/android.hardware.health-service.example_recovery|/system/lib64/libbase_shim.so \
 #    /system/lib64/hw/android.hardware.boot@1.0-impl-1.2-mtkimpl.so|/system/lib64/libbase_shim.so  
-
-#TARGET_GLOBAL_CFLAGS += -Oz -ffunction-sections -fdata-sections -fno-unwind-tables -fno-asynchronous-unwind-tables -fomit-frame-pointer -fmerge-all-constants -flto
-#TARGET_GLOBAL_CPPFLAGS += -Oz -ffunction-sections -fdata-sections -fno-unwind-tables -fno-asynchronous-unwind-tables -fomit-frame-pointer -fmerge-all-constants -flto
-#TARGET_GLOBAL_LDFLAGS += -Wl,--gc-sections -Wl,--strip-all -Wl,--icf=all -flto -Wl,-Oz   

@@ -1,0 +1,2 @@
+#allow recovery hal_gatekeeper_default_exec:file entrypoint;
+#allow recovery trustlet_backup_exec:file rx_file_perms;

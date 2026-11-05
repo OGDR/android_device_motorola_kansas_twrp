@@ -22,8 +22,8 @@
 /dev/block/by-name/super /super emmc defaults defaults
 
 # Logical partitions - EROFS with ext4 fallback
-system /system erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
-system /system ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system /system_root erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system /system_root ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
 
 system_ext /system_ext erofs ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
 system_ext /system_ext ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
@@ -39,7 +39,12 @@ system_dlkm /system_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 vendor_dlkm /vendor_dlkm erofs ro wait,slotselect,avb,logical,first_stage_mount
 vendor_dlkm /vendor_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
-
+	
 # Misc / Persist
 /dev/block/by-name/misc /misc emmc defaults defaults
 /dev/block/by-name/persist /persist ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
+/dev/block/by-name/persist /mnt/vendor/persist ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
+
+/devices/platform/soc/11240000.mmc* auto auto defaults voldmanaged=sdcard1:auto
+/devices/platform/usb_xhci* auto vfat defaults voldmanaged=usbotg:auto
+/devices/platform/soc/11201000.usb0/11200000.xhci* auto vfat defaults voldmanaged=usbotg:auto

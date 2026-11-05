@@ -38,16 +38,16 @@ PRODUCT_PACKAGES += \
 # Hidl memory
 PRODUCT_PACKAGES += \
     android.hidl.allocator@1.0 \
-    android.hidl.memory@1.0 \
-    android.hidl.memory.token@1.0 \
-    libhidlmemory
+    libhidlmemory \
+    android.hidl.memory.token@1.0
+    #android.hidl.memory@1.0 \
+
+#PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+#    bootctrl.mt6835 \
 
 # Health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service
-
-#PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-#    bootctrl.mt6835 \
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
