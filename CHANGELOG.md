@@ -1,6 +1,6 @@
 # Changelog
 
-### November 6, 2026
+### November 7, 2026
 
 vold: Fix ownership of copied Keystore SQLite database
 
@@ -8,7 +8,7 @@ Updated `Decrypt.cpp` to explicitly set the ownership of copied Keystore SQLite 
 
 This ensures Keystore2 can properly access the database during recovery and prevents ownership-related access issues.
 
-Fixed mnt root root to system system and permission 700 to 771 in init.recovery.mt6835.rc for proper read or keystore would only work partially in recovery twrp
+Fixed mnt root root to system system and permission 700 to 0771 in init.recovery.mt6835.rc for proper read or keystore would only work partially in recovery twrp
 
 got rid of keystore2.rc no longer needed as it is initialized in init.recovery.mt6835.rc completley now
 
