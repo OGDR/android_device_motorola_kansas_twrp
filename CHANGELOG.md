@@ -1,5 +1,17 @@
 # Changelog
 
+### November 6, 2026
+
+vold: Fix ownership of copied Keystore SQLite database
+
+Updated `Decrypt.cpp` to explicitly set the ownership of copied Keystore SQLite database files to system:system (UID/GID 1000:1000) before applying restrictive permissions (0600). --> that file is my androi_system_vold repo
+
+This ensures Keystore2 can properly access the database during recovery and prevents ownership-related access issues.
+
+Fixed mnt root root to system system and permission 700 to 771 in init.recovery.mt6835.rc for proper read or keystore would only work partially in recovery twrp
+
+got rid of keystore2.rc no longer needed as it is initialized in init.recovery.mt6835.rc completley now
+
 ### November 4, 2026 — TWRP Boot / Trustonic Crypto / FBE
 
 Fixed the TWRP boot path following crypto/TEE initialization changes that caused recovery to get stuck on the boot animation.
