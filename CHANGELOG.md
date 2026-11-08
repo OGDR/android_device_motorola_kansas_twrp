@@ -12,6 +12,12 @@ Fixed mnt root root to system system and permission 700 to 0771 in init.recovery
 
 got rid of keystore2.rc no longer needed as it is initialized in init.recovery.mt6835.rc completley now
 
+recovery: Disable TW_WORKAROUND_BACKUP_BUG
+
+Removed the `-DTW_WORKAROUND_BACKUP_BUG` compiler flag from `bootable/recovery/Android.bp`, disabling the conditional backup exclusions and related workarounds in `partition.cpp`.
+
+This restores normal TWRP Data partition size reporting and backup coverage, including `/data/data`, application data, contacts, and other user data that should normally be included in a Data backup.
+
 ### November 4, 2026 — TWRP Boot / Trustonic Crypto / FBE
 
 Fixed the TWRP boot path following crypto/TEE initialization changes that caused recovery to get stuck on the boot animation.
