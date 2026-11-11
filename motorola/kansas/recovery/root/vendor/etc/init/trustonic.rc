@@ -1,6 +1,7 @@
 # Start Daemon (Registry directories should already be present)
 service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/persist/mcRegistry \
   -r /vendor/app/mcRegistry/0706000000000000000000000000004d.tlbin \
+  -r /vendor/app/mcRegistry/04010000000000000000000000003545.tabin \
   -r /vendor/app/mcRegistry/07170000000000000000000000000000.drbin \
   -r /vendor/app/mcRegistry/07170000000000000000000000000000.tlbin \
   -r /vendor/app/mcRegistry/07150000000000000000000000000000.drbin \
@@ -32,6 +33,8 @@ service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/pers
     group system
     class main
     seclabel u:r:recovery:s0
+
+# priority -20
     
 # t-Drv naming
 # 020f0000000000000000000000000000.drbin : utils

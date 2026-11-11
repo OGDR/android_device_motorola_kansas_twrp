@@ -1,5 +1,12 @@
 # Changelog
 
+### November 11, 2026
+
+- Updated Kansas vendor blobs and libraries from firmware `W1VKS36H.9-12-11` to `W1VKS36H.9-12-12`.
+- New firmware source: `KANSAS_G_SYS_W1VKS36H.9-12-12_subsidy-DISH_WILD_regulatory-DEFAULT_cid50_CFC`.
+- Updated Trustonic/MobiCore components and registry files.
+- Retained recovery-specific configuration and existing customizations.
+
 ### November 7, 2026
 
 vold: Fix ownership of copied Keystore SQLite database

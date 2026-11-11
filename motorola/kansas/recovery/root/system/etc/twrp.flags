@@ -81,7 +81,7 @@
 
 
 /metadata  f2fs  /dev/block/by-name/metadata  flags=display="Metadata";backup=1
-/data      f2fs  /dev/block/by-name/userdata  flags=display="Data";backup=1;encryptable=footer
+#/data      f2fs  /dev/block/by-name/userdata  flags=display="Data";backup=1;encryptable=footer
 /mnt/vendor/persist ext4 /dev/block/by-name/persist flags=display="Vendor Persist";backup=1
 
 # TWRP storage devices for GUI
