@@ -1,5 +1,17 @@
 # Changelog
 
+To Do — Current Priorities
+Fix MTP — get MTP working in recovery (service start, storage visible to PC, stable connect).
+
+Changelog — November 17, 2026
+Confirmed FBE / CE decrypt on Kansas with default (no lock) credential.
+Decrypt_User uses synthetic-password path first when /data/system_de/0/spblob exists (system/vold/Decrypt.cpp).
+Log path: Using synthetic password method → using secdis to decrypt spblob → spblob v2 / v3 → User 0 Decrypted Successfully.
+Props: twrp.user.0.decrypt=1, twrp.all.users.decrypted=true, twrp.decrypt.done=true.
+/data/media/0 shows real names; sizes report correctly.
+Missing .pwd expected with no PIN/password; harmless.
+Data restore completed; apps functional after restore.
+
 ### November 11, 2026
 
 - Updated Kansas vendor blobs and libraries from firmware `W1VKS36H.9-12-11` to `W1VKS36H.9-12-12`.
@@ -37,7 +49,7 @@ Identified the remaining partial FBE issue: /data/media/0 still displays encrypt
 TWRP continues to report "not all users decrypted," with user 0 decryption failing.
 Confirmed that the device has no screen lock, so decryption must complete through the device-key/KeyMint path without PIN entry.
 
-## To Do:
+## To Do: Historical To Do Items
 
 Capture logcat immediately after TWRP boot, focusing on decryption, KeyMint, Gatekeeper, and user 0.
 Finish no-password device-key FBE decryption for user 0.
