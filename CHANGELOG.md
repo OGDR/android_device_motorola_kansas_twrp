@@ -1,9 +1,26 @@
 # Changelog
+# Kansas TWRP – Development Changelog
 
-To Do — Current Priorities
+## November 19, 2026
+
+### Fixed
+- Fixed MTP FunctionFS initialization in AIO compatibility mode.
+- Added EP0 control endpoint handling and descriptor initialization before opening MTP data endpoints.
+- Verified successful MTP initialization and confirmed access to internal storage and PDF files.
+- Preserved ADB functionality alongside MTP.
+
+**Source Code:** [OGDR/android_bootable_recovery – Commit 7e6c87d](https://github.com/OGDR/android_bootable_recovery/commit/7e6c87db85f2fbeff341f16d852cd47ff3ebe549)
+
+### To Do
+- [ ] Review and identify missing partitions in **Wipe → Advanced Wipe**.
+- [ ] Verify available partition names, mount points, and wipe functionality.
+- [ ] Test MTP file transfers in both directions.
+- [ ] Fix MTP initialization when entering TWRP with the USB cable already connected. Currently, reconnecting the cable after boot and pressing Enable MTP restores connectivity.
+
+To Do: Historical To Do Items
 Fix MTP — get MTP working in recovery (service start, storage visible to PC, stable connect).
 
-Changelog — November 17, 2026
+## November 17, 2026
 Confirmed FBE / CE decrypt on Kansas with default (no lock) credential.
 Decrypt_User uses synthetic-password path first when /data/system_de/0/spblob exists (system/vold/Decrypt.cpp).
 Log path: Using synthetic password method → using secdis to decrypt spblob → spblob v2 / v3 → User 0 Decrypted Successfully.
